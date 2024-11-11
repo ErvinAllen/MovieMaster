@@ -9,8 +9,8 @@ function Home() {
           <ul className="flex sm:flex-row flex-col text-nowrap items-center p-4 pl-6 justify-between text-white text-lg">
             <li className="text-4xl font-serif p-4"><a href="/">Movie<span className="text-red-500">Master</span></a></li>
             <ul className="sm:flex hidden sm:flex-row gap-4 px-4">
-              <li className="cursor-pointer bg-red-500 rounded-md hover:bg-red-700 px-6 py-2"><a href="/">About Us</a></li>
-              <li className="cursor-pointer border border-red-500 hover:bg-red-700 hover:border-red-700 rounded-md px-6 py-2"><a href="/">Contact Us</a></li>
+              <a href="/" className="cursor-pointer bg-red-500 rounded-md hover:bg-red-700 px-6 py-2">About Us</a>
+              <a href="/" className="cursor-pointer border border-red-500 hover:bg-red-700 hover:border-red-700 rounded-md px-6 py-2">Contact Us</a>
             </ul>
           </ul>
         </nav>
