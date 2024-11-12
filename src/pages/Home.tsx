@@ -5,19 +5,22 @@ function Home() {
     <div className="w-screen h-screen">
         <div className="w-full h-full bg-[url('./assets/backGround.jpg')] bg-cover bg-center flex justify-center items-center">
 
-        <nav className="z-20 w-full h-auto fixed bg-stone-950 bg-opacity-70 backdrop-blur-sm border-b border-white/20 top-0">
-          <ul className="flex sm:flex-row flex-col text-nowrap items-center p-4 pl-6 justify-between text-white text-lg">
-            <li className="text-4xl font-serif p-4"><a href="/">Movie<span className="text-red-500">Master</span></a></li>
-            <ul className="sm:flex hidden sm:flex-row gap-4 px-4">
-              <a href="/" className="cursor-pointer bg-red-500 rounded-md hover:bg-red-700 px-6 py-2">About Us</a>
-              <a href="/" className="cursor-pointer border border-red-500 hover:bg-red-700 hover:border-red-700 rounded-md px-6 py-2">Contact Us</a>
+        <nav className="z-20 w-full h-auto fixed bg-gradient-to-b from-stone-950 bg-opacity-70 top-0">
+          <ul className="flex md:flex-row flex-col text-nowrap items-center p-8 justify-between text-white text-lg">
+            <li className="text-4xl font-serif"><a href="/">Movie<span className="text-red-500">Master</span></a></li>
+            <ul className="md:flex hidden md:flex-row gap-4 px-4">
+              <a href="/" className="">About Us</a>
+              <a href="/" className="">Contact Us</a>
+              <a href="/" className="">Privacy Policy</a>
+              <a href="/" className="">Terms of Service</a>
+              <a href="/" className="">FAQ</a>
             </ul>
           </ul>
         </nav>
 
-          <div className="border border-stone-700 p-8 w-full m-8 lg:mx-48 2xl:mx-96 z-10 bg-zinc-950 bg-opacity-25 backdrop-blur-md rounded-3xl mt-48 sm:mt-12">
-            <h1 className="text-white text-center text-3xl pb-4">Welcome to MovieMaster!</h1>
-            <p className="text-white/70 text-center py-6 hidden sm:block">Please log in to explore movies, watch trailers, and discover your next favorite film. Dive into the world of cinema with MovieMaster!</p>
+          <div className="border border-stone-700 p-8 w-full m-8 mx-[10%] z-10 bg-zinc-950 bg-opacity-25 backdrop-blur-md rounded-3xl mt-16">
+            <h1 className="text-white text-nowrap text-center text-3xl pb-4">Welcome to MovieMaster!</h1>
+            <p className="text-white/70 text-center py-6">Please log in to explore movies, watch trailers, and discover your next favorite film. Dive into the world of cinema with MovieMaster!</p>
             <div className="border border-black/40 w-full" />
 
             <form className="pt-8 flex flex-col gap-1" action="">
