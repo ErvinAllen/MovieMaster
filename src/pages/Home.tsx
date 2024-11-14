@@ -55,7 +55,7 @@ function Home() {
         
         <nav className="z-20 w-full h-auto fixed bg-gradient-to-b from-stone-950 bg-opacity-70 top-0">
           <ul className="flex md:flex-row h-24  text-nowrap items-center p-8 justify-between text-white text-lg">
-            <li className="text-4xl font-serif"><a href="/">Movie<span className="text-red-500">Master</span></a></li>
+            <a href="/"><img src="src/assets/logo.png" width={64} height={64} /></a>
             {navBarIcon}
             <ul className="md:flex hidden md:flex-row gap-4 px-4">
               <a href="/" className="hover:scale-110 hover:text-red-400 transition-all ease-in-out">About Us</a>
@@ -67,8 +67,8 @@ function Home() {
           </ul>
         </nav>
 
-          <div className="border border-stone-700 p-8 mx-[20%] z-10 bg-zinc-950 bg-opacity-50 backdrop-blur-md rounded-3xl mt-24">
-            <h1 className="text-red-200 text-nowrap text-xl text-center sm:text-3xl font-bold">Welcome to MovieMaster</h1>
+          <div className="border border-stone-700 p-8 mx-[20%] z-10 bg-zinc-950 bg-opacity-50 backdrop-blur-md rounded-lg mt-24">
+            <h1 className="text-white text-nowrap text-xl text-center sm:text-2xl md:text-3xl font-bold">Welcome to MovieMaster</h1>
             <p className="text-white/70 text-center text-sm py-6">Please log in to explore movies, watch trailers, and discover your next favorite film. Dive into the world of cinema with MovieMaster!</p>
             <div className="border border-black/40 w-full" />
             <form className="pt-8 flex flex-col gap-1" action="">
