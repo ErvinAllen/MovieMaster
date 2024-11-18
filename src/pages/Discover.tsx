@@ -50,7 +50,7 @@ function Discover() {
       <div className="w-screen h-screen flex flex-col justify-center overflow-x-hidden bg-[url('./assets/alienPosterDarkened.jpg')] bg-cover bg-center scrollbar-hide">
         <NavBar />
         <div>
-          <div className="lg:w-[60%] text-white mt-[40%] px-8 lg:px-16 py-2 lg:py-8 text-sm">
+          <div className="lg:w-[60%] text-white mt-[60%] lg:mt-[40%] px-8 lg:px-16 py-2 lg:py-8 text-sm">
             <h1 className="text-4xl lg:text-6xl font-semibold">Alien: Romulus</h1>
             <ol className="flex flex-row gap-4 py-2 text-sm">
               <li>2024</li>

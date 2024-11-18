@@ -25,7 +25,7 @@ const searchInput = (
       
         {/* sun icon */}
         <svg
-          className="swap-on h-10 w-10 fill-neutral-950"
+          className="swap-on h-10 w-10 fill-neutral-100"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24">
           <path
@@ -34,7 +34,7 @@ const searchInput = (
     
         {/* moon icon */}
         <svg
-          className="swap-off h-10 w-10 fill-neutral-950"
+          className="swap-off h-10 w-10 fill-neutral-100"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24">
           <path
@@ -61,11 +61,11 @@ function NavBar() {
       <ul className="flex flex-row items-center gap-4">
         {searchInput}
         {darkToggle}
-        <img src={ notification ? 'src/assets/filledBell.png' : 'src/assets/bell.png' } onClick={() => setNotification((prev) => !prev)} className="cursor-pointer hidden sm:block" width={32} height={32} alt="notification bell" />
+        <img src={ notification ? 'src/assets/whiteBellFilled.png' : 'src/assets/whiteBell.png' } onClick={() => setNotification((prev) => !prev)} className="cursor-pointer hidden sm:block" width={32} height={32} alt="notification bell" />
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button">
             <div className="avatar online placeholder cursor-pointer">
-              <div className="bg-neutral-950 text-neutral-content w-16 rounded-full">
+              <div className="bg-neutral-900 text-neutral-content w-16 rounded-full">
                 <span className="text-xl">G</span>
               </div>
             </div>
