@@ -47,7 +47,7 @@ const searchInput = (
 function NavBar() {
   const [notification, setNotification] = useState(false);
   return (
-    <nav className="w-full h-24 fixed bg-neutral-950 bg-opacity-50 rounded-b-3xl backdrop-blur-sm top-0 p-4 px-6 flex items-center justify-between">
+    <nav className="w-full h-24 fixed z-50 bg-neutral-950 bg-opacity-50 border-b border-black backdrop-blur-sm top-0 p-4 px-6 flex items-center justify-between">
       <ul className="flex flex-row items-center text-white text-nowrap">
         <a href="/discover"><img src="./src/assets/logo.png" alt="Logo" className="mr-8" width={64} height={64} /></a>
         <li className="cursor-pointer hover:text-red-600 hover:scale-110 transition-all duration-100 hidden lg:flex px-2">Home</li>
