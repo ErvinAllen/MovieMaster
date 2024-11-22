@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/swiper-bundle.css'
 import { Scrollbar } from "swiper/modules";
 import { Link } from "react-router-dom";
-import DiscoverMore from "./DiscoverMore";
+
 
 
 interface Movie {
@@ -27,7 +27,7 @@ const ping = (
 
 function Discover() { 
   const [discoverData, setDiscoverData] = useState<posterData | null>(); 
-  const imageBaseUrl = 'https://image.tmdb.org/t/p/w500'; 
+  const imageBaseUrl = 'https://image.tmdb.org/t/p/w500'; // make it original
 
   const options = {
     method: 'GET',
@@ -44,10 +44,10 @@ function Discover() {
     .catch(err => console.error(err));
   }, [])
 
-  
+
   return (
     <>
-      <div className="w-screen h-screen flex flex-col justify-center overflow-x-hidden bg-[url('./assets/alienPosterDarkened.jpg')] bg-cover bg-center scrollbar-hide">
+      <div className="w-screen h-screen flex flex-col justify-center overflow-x-hidden bg-[url('https://image.tmdb.org/t/p/original/6vn6K9oX82i6E86ZiHVxqVEMQqP.jpg?api_key=373dafb82e0fe92b858f8a3c6d02715d')] bg-cover bg-center scrollbar-hide">
         <NavBar />
         <div>
           <div className="lg:w-[60%] text-white mt-[60%] lg:mt-[40%] px-8 lg:px-16 py-2 lg:py-8 text-sm">
@@ -81,7 +81,7 @@ function Discover() {
             {
               discoverData?.results.map((movie, index) => (
                 <SwiperSlide className="p-6 min-w-32 px-2 mb-2">
-                  <img key={index} src={imageBaseUrl.concat(movie.poster_path)} className="hover:scale-110 cursor-grab active:cursor-grabbing active:scale-95 transition-transform duration-150 rounded-xl border border-black" />
+                  <img key={index} src={imageBaseUrl.concat(movie.poster_path)} className="hover:scale-110 cursor-grab active:cursor-grabbing active:scale-95 transition-transform duration-150 rounded-xl" />
                 </SwiperSlide>
               ))
             }
