@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom"
+
 import { useState } from "react"
 import { motion } from "framer-motion"
+import { Link } from "react-router-dom";
 
 function Home() {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
@@ -101,7 +102,7 @@ function Home() {
               <div className="flex flex-col gap-1">
                 <button className="btn btn-block bg-red-500 text-white hover:bg-red-900">Log In</button>
                 <button className="btn btn-block bg-red-500 text-white hover:bg-red-900">Sign Up</button>
-                <Link to="/discover"><button className="btn btn-block border-none bg-blue-600 text-white hover:bg-blue-900">Log In as a Guest</button></Link>
+                <Link to="/discoverMore"><button className="btn btn-block border-none bg-blue-600 text-white hover:bg-blue-900">Log In as a Guest</button></Link>
               </div>
             </form>
           </div>

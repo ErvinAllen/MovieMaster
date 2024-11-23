@@ -3,10 +3,12 @@ import { motion } from "motion/react"
 import { useEffect, useState } from "react"
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
+import { Link } from "react-router-dom";
 
 const imageBaseUrl = 'https://image.tmdb.org/t/p/w500';
 
 interface Movie {
+  id: number,
   title: string,
   overview: string,
   vote_average: number,
@@ -37,6 +39,7 @@ function DiscoverMore() {
   const [selectedGenre, setSelectedGenre] = useState<number | undefined>();
   const [filteredMovies, setFilteredMovies] = useState<Array<Movie>>();
   const [imdbRating, setImdbRating] = useState<number>(4);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const options = {
     method: 'GET',
@@ -51,6 +54,7 @@ function DiscoverMore() {
     .then(res => res.json())
     .then(res => {
       setData(res);
+      setIsLoading(false)
     })
     .catch(err => console.log(err));
   }, [pageNumber])
@@ -58,7 +62,8 @@ function DiscoverMore() {
   useEffect(() => {
     fetch(`https://api.themoviedb.org/3/genre/movie/list?language=en`, options)
     .then(res => res.json())
-    .then(res => {
+    .then(res => 
+    {
       setGenres(res);
     })
     .catch(err => console.log(err));
@@ -179,7 +184,7 @@ function DiscoverMore() {
         </motion.div>
 
         <section className="grid 2xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 px-4 ml-24 mt-24">
-          <div className="navbar bg-base-100 w-full h-24 rounded-xl col-span-full mt-8">
+          <div className="navbar hidden sm:flex flex-row bg-base-100 w-full h-24 rounded-xl col-span-full mt-8">
             <div className="flex-1">
               <button onClick={() => { setFilteredMovies(data?.results); setSelectedGenre(undefined); setImdbRating(4) }} className="btn btn-ghost text-xl">Reset Filters</button>
             </div>
@@ -191,13 +196,14 @@ function DiscoverMore() {
             "& .MuiSlider-markLabel" : {
                color: "gray"
               }
-            }}>
+            }}
+            >
               <Slider
                 sx={{
                   color: "gold"
                 }}
                 value={imdbRating}
-                onChange={(event, newValue) => {
+                onChange={(_, newValue) => {
                   setImdbRating(newValue as number)
                 }}
                 aria-label="Imdb Rating Filter"
@@ -228,7 +234,7 @@ function DiscoverMore() {
           </div>
           {
            filteredMovies?.length ? filteredMovies.map((movie, index) => (
-              <div key={index} className="border border-black grid rounded-xl hover:shadow-2xl hover:scale-105 transition-transform  duration-100 bg-neutral-950">
+              <div key={index} className="border border-black grid rounded-xl hover:shadow-2xl hover:scale-105 transition-transform mt-4 duration-100 bg-neutral-950">
                 <img className="rounded-xl w-full"  src={imageBaseUrl.concat(movie.backdrop_path)} /> 
                 <div className="flex flex-col gap-2 justify-between px-4 ">
                   <div className="flex flex-row items-center justify-between pt-4">
@@ -248,13 +254,14 @@ function DiscoverMore() {
                 <p className="px-4">{movie.overview.slice(0, 128).concat('...')}</p>
                 <div className="flex flex-row p-4 gap-4">
                   <button className="btn w-auto hover:bg-red-600 bg-red-500 text-black">Watch Now<img src="src/assets/playButton.png" width={16} alt="" /></button>
-                  <button className="btn w-auto hover:bg-red-600 bg-red-500 text-black">Details <img src="src/assets/arrow.png" width={16} alt="" /></button>
+                  <Link to={`/discover/${movie.id}`} className="btn w-auto hover:bg-red-600 bg-red-500 text-black">Details <img src="src/assets/arrow.png" width={16} alt="" /></Link>
                 </div>
               </div>
-            )) : 
+            )) : isLoading ? <span className="loading loading-dots loading-lg justify-self-center col-span-full"></span> : (
             <div role="alert" className="alert col-span-full alert-error">
               <span>No Result Found!</span>
             </div>
+            )
           } 
           <div className="join col-span-full flex justify-center mb-8">
             <button className="join-item btn btn-ghost" onClick={() => setPageNumber((prev) => prev - 1 === 0 ? prev = 1 : prev - 1)}>Previous</button>

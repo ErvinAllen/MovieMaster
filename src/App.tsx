@@ -4,10 +4,10 @@ import Home from "./pages/Home"
 import DiscoverMore from "./pages/DiscoverMore"
 function App() {
   return (
-    <main className="">
+    <main>
       <Routes>
         <Route path="/" element={ <Home /> }></Route>
-        <Route path="/discover" element={ <Discover /> }></Route>
+        <Route path="/discover/:id" element={ <Discover /> }></Route>
         <Route path="/discoverMore" element={<DiscoverMore />} />
       </Routes>
     </main>
