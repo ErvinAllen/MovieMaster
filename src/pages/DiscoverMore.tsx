@@ -184,37 +184,24 @@ function DiscoverMore() {
         </motion.div>
 
         <section className="grid 2xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 px-4 ml-24 mt-24">
-          <div className="navbar hidden sm:flex flex-row bg-base-100 w-full h-24 rounded-xl col-span-full mt-8">
+          <div className="navbar flex flex-col md:flex-row bg-base-100 w-full h-auto rounded-xl col-span-full mt-8">
             <div className="flex-1">
-              <button onClick={() => { setFilteredMovies(data?.results); setSelectedGenre(undefined); setImdbRating(4) }} className="btn btn-ghost text-xl">Reset Filters</button>
+              <button onClick={() => { setFilteredMovies(data?.results); setSelectedGenre(undefined); setImdbRating(4) }} className="btn btn-ghost text-xl">Reset</button>
             </div>
-            <Box 
-            sx={{ 
-            width: 500,
-            marginRight: 8,
-            marginTop: 2,
-            "& .MuiSlider-markLabel" : {
-               color: "gray"
-              }
-            }}
-            >
-              <Slider
-                sx={{
-                  color: "gold"
-                }}
-                value={imdbRating}
-                onChange={(_, newValue) => {
-                  setImdbRating(newValue as number)
-                }}
-                aria-label="Imdb Rating Filter"
-                defaultValue={4}
-                valueLabelDisplay="auto"
-                marks={[{value: 4, label: '4/10'}, {value: 9.9, label: '9.9/10'}, {value: 7, label: 'IMDB Rating'}]}
-                step={0.1}
-                min={4}
-                max={9.9}
-              />
-            </Box>
+            <div className="flex flex-col">
+            <label htmlFor="range">{imdbRating > 4 ? imdbRating : 'IMDB Rating'}</label>
+
+            <input id="range" type="range" min="4" max="9.9" value={imdbRating} onChange={(e) => setImdbRating(Number(e.target.value))} className="range sm:w-96 w-48" step="0.1" />
+              <div className="flex w-full justify-between px-2">
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+                <span>7</span>
+                <span>8</span>
+                <span>9</span>
+                <span>10</span>
+              </div>
+            </div>
             <div className="flex-none">
               <ul className="menu menu-horizontal px-1">
                 <li className="flex flex-row">
@@ -253,13 +240,12 @@ function DiscoverMore() {
                 <p className="px-4 pb-2 font-bold flex flex-row items-center gap-2"><img src="src/assets/imdb.png" width={32} alt="" />{movie.vote_average.toFixed(1)}/10<span className="text-sm font-normal">{movie.vote_count} Votes</span></p>
                 <p className="px-4">{movie.overview.slice(0, 128).concat('...')}</p>
                 <div className="flex flex-row p-4 gap-4">
-                  <button className="btn w-auto hover:bg-red-600 bg-red-500 text-black">Watch Now<img src="src/assets/playButton.png" width={16} alt="" /></button>
                   <Link to={`/discover/${movie.id}`} className="btn w-auto hover:bg-red-600 bg-red-500 text-black">Details <img src="src/assets/arrow.png" width={16} alt="" /></Link>
                 </div>
               </div>
             )) : isLoading ? <span className="loading loading-dots loading-lg justify-self-center col-span-full"></span> : (
-            <div role="alert" className="alert col-span-full alert-error">
-              <span>No Result Found!</span>
+            <div role="alert" className="alert col-span-full alert-warning flex justify-center">
+              <span className="font-semibold text-xl">No Result Found</span>
             </div>
             )
           } 

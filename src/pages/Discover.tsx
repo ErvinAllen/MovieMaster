@@ -101,7 +101,7 @@ function Discover() {
     <>
       <div className={`w-full h-auto flex flex-col justify-center bg-cover bg-fixed bg-center bg-blend-multiply bg-black/25 scrollbar-hide`} style={{ backgroundImage: `url(${backgroundImage}` }}>
         <NavBar />
-          <div className="lg:w-[60%] z-10 text-white mt-[22.5%] px-8 lg:px-16 py-8 text-sm">
+          <div className="lg:w-[60%] z-10 text-white flex flex-col justify-end h-screen px-8 lg:px-16 py-8 text-sm">
             <h1 className="text-4xl lg:text-6xl font-semibold">{movieToDiscover?.title}</h1>
             <ol className="flex flex-row gap-4 py-2 text-sm">
               <li>{movieToDiscover?.release_date.slice(0,4)}</li>

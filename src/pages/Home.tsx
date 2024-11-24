@@ -68,7 +68,7 @@ function Home() {
           </ul>
         </nav>
 
-          <div className="border border-stone-700 p-8 mx-[30%] z-10 bg-zinc-950 bg-opacity-50 backdrop-blur-md rounded-lg mt-24">
+          <div className="border border-stone-700 p-8 mx-[40%] z-10 bg-zinc-950 bg-opacity-50 backdrop-blur-md rounded-lg mt-24">
             <h1 className="text-white text-nowrap text-xl text-center sm:text-2xl md:text-3xl font-bold">Welcome to MovieMaster</h1>
             <p className="text-white/70 text-center text-sm py-6">Please log in to explore movies, watch trailers, and discover your next favorite film. Dive into the world of cinema with MovieMaster!</p>
             <div className="border border-black/40 w-full" />
