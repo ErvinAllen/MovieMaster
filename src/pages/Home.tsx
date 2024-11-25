@@ -68,8 +68,8 @@ function Home() {
           </ul>
         </nav>
 
-          <div className="border border-stone-700 p-8 mx-[40%] z-10 bg-zinc-950 bg-opacity-50 backdrop-blur-md rounded-lg mt-24">
-            <h1 className="text-white text-nowrap text-xl text-center sm:text-2xl md:text-3xl font-bold">Welcome to MovieMaster</h1>
+          <div className="border border-stone-700 p-8 mx-[30%] z-10 bg-zinc-950 bg-opacity-50 backdrop-blur-md rounded-lg mt-24">
+            <h1 className="text-white text-nowrap text-xl text-center sm:text-2xl md:text-2xl font-bold">Welcome to MovieMaster</h1>
             <p className="text-white/70 text-center text-sm py-6">Please log in to explore movies, watch trailers, and discover your next favorite film. Dive into the world of cinema with MovieMaster!</p>
             <div className="border border-black/40 w-full" />
             <form className="pt-8 flex flex-col gap-1" action="">
@@ -101,6 +101,7 @@ function Home() {
 
               <div className="flex flex-col gap-1">
                 <button className="btn btn-block bg-red-500 text-white hover:bg-red-900">Log In</button>
+                <p className="underline text-center py-4">New to MovieMaster?</p>
                 <button className="btn btn-block bg-red-500 text-white hover:bg-red-900">Sign Up</button>
                 <Link to="/discoverMore"><button className="btn btn-block border-none bg-blue-600 text-white hover:bg-blue-900">Log In as a Guest</button></Link>
               </div>

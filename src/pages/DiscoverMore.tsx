@@ -1,8 +1,6 @@
 import NavBar from "../components/NavBar"
 import { motion } from "motion/react"
 import { useEffect, useState } from "react"
-import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
 import { Link } from "react-router-dom";
 
 const imageBaseUrl = 'https://image.tmdb.org/t/p/w500';
@@ -19,7 +17,7 @@ interface Movie {
 }
 
 interface Data {
-  results: Array<Movie>,
+  results: Movie[]
 }
 
 interface Genre {
@@ -40,17 +38,14 @@ function DiscoverMore() {
   const [filteredMovies, setFilteredMovies] = useState<Array<Movie>>();
   const [imdbRating, setImdbRating] = useState<number>(4);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [searchQuery, setSearchQuery] = useState<string | undefined>(undefined);
+  const [searchedData, setSearchedData] = useState<Movie[]>();
 
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNzNkYWZiODJlMGZlOTJiODU4ZjhhM2M2ZDAyNzE1ZCIsIm5iZiI6MTczMTg0OTIwMC4xNjA2NTMsInN1YiI6IjY2YzljYzFhMWI4OTI0MWM1MDg3N2QzZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ysHb0cMIPsG8Wwyz17gVTfUYjhUnft-WHbzXTKhmPjc'
-    }
-  };
+  console.log(searchedData)
+  console.log(searchQuery)
   
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${pageNumber}&sort_by=popularity.desc`, options)
+    fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${pageNumber}&sort_by=popularity.desc&api_key=373dafb82e0fe92b858f8a3c6d02715d`)
     .then(res => res.json())
     .then(res => {
       setData(res);
@@ -60,7 +55,7 @@ function DiscoverMore() {
   }, [pageNumber])
   
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/genre/movie/list?language=en`, options)
+    fetch(`https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=373dafb82e0fe92b858f8a3c6d02715d`)
     .then(res => res.json())
     .then(res => 
     {
@@ -68,6 +63,16 @@ function DiscoverMore() {
     })
     .catch(err => console.log(err));
   }, [])
+
+  useEffect(() => {
+    searchQuery ? fetch(`https://api.themoviedb.org/3/search/movie?query=${searchQuery}&include_adult=false&language=en-US&page=1&api_key=373dafb82e0fe92b858f8a3c6d02715d`)
+    .then(res => res.json())
+    .then(res => {
+      setSearchedData(res.results); 
+      setFilteredMovies(searchedData?.filter(movie => movie.backdrop_path !== null));
+    }) : setFilteredMovies(data?.results)
+  }, [searchQuery])
+
 
   interface Match {
     title: string;
@@ -110,30 +115,30 @@ function DiscoverMore() {
 
   const navBarIcon = (
     <label className="btn btn-circle swap swap-rotate p-0">
-        {/* this hidden checkbox controls the state */}
-        <input type="checkbox" onClick={() => { setIsSideBarOpen((prev) => !prev) }} />
-      
-        {/* hamburger icon */}
-        <svg
-          className="swap-off fill-current"
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          viewBox="0 0 512 512">
-          <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
-        </svg>
-      
-        {/* close icon */}
-        <svg
-          className="swap-on fill-current"
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          viewBox="0 0 512 512">
-          <polygon
-            points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
-        </svg>
-      </label>
+      {/* this hidden checkbox controls the state */}
+      <input type="checkbox" onClick={() => { setIsSideBarOpen((prev) => !prev) }} />
+    
+      {/* hamburger icon */}
+      <svg
+        className="swap-off fill-current"
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 512 512">
+        <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
+      </svg>
+    
+      {/* close icon */}
+      <svg
+        className="swap-on fill-current"
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 512 512">
+        <polygon
+          points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
+      </svg>
+    </label>
   )
 
   const pages = [1,1,2,3];
@@ -184,14 +189,26 @@ function DiscoverMore() {
         </motion.div>
 
         <section className="grid 2xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 px-4 ml-24 mt-24">
-          <div className="navbar flex flex-col md:flex-row bg-base-100 w-full h-auto rounded-xl col-span-full mt-8">
-            <div className="flex-1">
-              <button onClick={() => { setFilteredMovies(data?.results); setSelectedGenre(undefined); setImdbRating(4) }} className="btn btn-ghost text-xl">Reset</button>
+          <div className="navbar flex flex-col lg:flex-row bg-base-100 w-full h-auto rounded-xl col-span-full mt-8">
+            <div className="flex">
+              <button onClick={() => { setFilteredMovies(data?.results); setSelectedGenre(undefined); setImdbRating(4); setSearchQuery('') }} className="btn btn-ghost text-xl">Reset</button>
             </div>
-            <div className="flex flex-col">
-            <label htmlFor="range">{imdbRating > 4 ? imdbRating : 'IMDB Rating'}</label>
-
-            <input id="range" type="range" min="4" max="9.9" value={imdbRating} onChange={(e) => setImdbRating(Number(e.target.value))} className="range sm:w-96 w-48" step="0.1" />
+            <label className="input input-bordered flex items-center gap-2 bg-transparent mx-4 mt-2 lg:mt-0 lg:w-96 w-full">
+            <input type="text" className="grow" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              className="h-4 w-4 opacity-70">
+              <path
+                fillRule="evenodd"
+                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                clipRule="evenodd" />
+              </svg>
+            </label>
+            <div className="flex flex-col lg:w-auto w-full lg:mx-8">
+            <label htmlFor="range" className="lg:pt-0 pt-4">{imdbRating > 4 ? imdbRating : 'IMDB Rating'}</label>
+            <input id="range" type="range" min="4" max="9.9" value={imdbRating} onChange={(e) => setImdbRating(Number(e.target.value))} className="range lg:w-96" step="0.1" />
               <div className="flex w-full justify-between px-2">
                 <span>4</span>
                 <span>5</span>
@@ -202,11 +219,11 @@ function DiscoverMore() {
                 <span>10</span>
               </div>
             </div>
-            <div className="flex-none">
-              <ul className="menu menu-horizontal px-1">
-                <li className="flex flex-row">
+            <div className="flex-1">
+              <ul className="menu menu-horizontal px-1 w-full">
+                <li className="flex flex-row w-full justify-end">
                   <details>
-                    <summary className="text-lg p-4 mx-4">Genre</summary>
+                    <summary className="text-lg p-3 mr-4">Genre</summary>
                     <ul className="bg-base-100 rounded-t-none p-2 z-50">
                       {
                         genres?.genres.map((genre, index) => (
@@ -229,16 +246,16 @@ function DiscoverMore() {
                     <img src="src/assets/bookmarkWhite.png" className="cursor-pointer" width={24} alt="" />
                   </div>
                   <ul className="flex flex-col gap-x-4">
-                    <h1 className="font-semibold text-lg">{movie.release_date.slice(0,4)}</h1>
+                    <h1 className="font-semibold text-lg">{movie.release_date?.slice(0,4)}</h1>
                     <div className="grid grid-cols-3 gap-x-4">
-                      {MovieWithGenres[index].genres.map((genre, index) => (
+                      {MovieWithGenres[index].genres?.map((genre, index) => (
                         <span className="text-sm" key={index}>{genre}</span>
                       ))}
                     </div>
                   </ul>
                 </div>
-                <p className="px-4 pb-2 font-bold flex flex-row items-center gap-2"><img src="src/assets/imdb.png" width={32} alt="" />{movie.vote_average.toFixed(1)}/10<span className="text-sm font-normal">{movie.vote_count} Votes</span></p>
-                <p className="px-4">{movie.overview.slice(0, 128).concat('...')}</p>
+                <p className="px-4 pb-2 font-bold flex flex-row items-center gap-2"><img src="src/assets/imdb.png" width={32} alt="" />{movie.vote_average?.toFixed(1)}/10<span className="text-sm font-normal">{movie.vote_count} Votes</span></p>
+                <p className="px-4">{movie.overview?.slice(0, 128).concat('...')}</p>
                 <div className="flex flex-row p-4 gap-4">
                   <Link to={`/discover/${movie.id}`} className="btn w-auto hover:bg-red-600 bg-red-500 text-black">Details <img src="src/assets/arrow.png" width={16} alt="" /></Link>
                 </div>
