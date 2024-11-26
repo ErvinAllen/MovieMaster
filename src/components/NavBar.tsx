@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom"
+import logo from '../assets/logo.png';
 
 function NavBar() {
   return (
     <nav className="w-full h-24 fixed z-50 bg-neutral-950 bg-opacity-50 backdrop-blur-sm top-0 p-4 px-4 flex items-center justify-between scrollbar-hide">
       <ul className="flex flex-row items-center text-white text-nowrap">
-        <a href="/discoverMore"><img src="/src/assets/logo.png" alt="Logo" className="mr-8" width={64} height={64} /></a>
+        <a href="/discoverMore"><img src={logo} alt="Logo" className="mr-8" width={64} height={64} /></a>
         <Link to={'/'} className="cursor-pointer hover:text-red-600 hover:scale-110 transition-all duration-100 hidden md:flex px-2">Home</Link>
         <li className="cursor-pointer hover:text-red-600 hover:scale-110 transition-all duration-100 hidden md:flex px-2">TV Shows</li>
         <Link to={'/discoverMore'} className="cursor-pointer hover:text-red-600 hover:scale-110 transition-all duration-100 hidden md:flex px-2">Movies</Link>
