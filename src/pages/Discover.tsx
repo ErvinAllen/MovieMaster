@@ -4,6 +4,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/swiper-bundle.css'
 import { Scrollbar } from "swiper/modules";
 import { useParams } from "react-router-dom";
+import imdbLogo from '../assets/imdb.png'
+import playButton from '../assets/playButton.png'
+import BookmarkFilled from '../assets/bookmarkFilled.png'
 
 interface Credits {
   id: number,
@@ -104,12 +107,12 @@ function Discover() {
               <li>{movieToDiscover?.runtime}m</li>
             </ol>
             <div className="flex flex-row gap-x-2">{movieToDiscover?.genres.map((genre, index) => <p key={index}>{genre.name}</p> )}</div>
-            <span className="flex flex-row items-center gap-2 text-lg font-semibold"><img src="/src/assets/imdb.png" width={48} alt="" />{movieToDiscover?.vote_average.toFixed(1)}/10 <span className="text-sm">{movieToDiscover?.vote_count} votes</span></span>
+            <span className="flex flex-row items-center gap-2 text-lg font-semibold"><img src={imdbLogo} width={48} alt="" />{movieToDiscover?.vote_average.toFixed(1)}/10 <span className="text-sm">{movieToDiscover?.vote_count} votes</span></span>
             <p className="lg:text-lg sm:block hidden">{movieToDiscover?.overview}</p>
             <p className="lg:text-lg sm:hidden">{movieToDiscover?.overview.slice(0,128).concat('...')}</p>
             <div className="flex flex-row py-4 gap-4">
-              <button className="btn w-auto hover:bg-red-100 bg-neutral-100 text-black border-none">Watch Now<img src="/src/assets/playButton.png" width={16} alt="" /></button>
-              <button className="btn w-auto hover:bg-red-100 bg-neutral-100 text-black border-none">Watch Later <img src="/src/assets/bookmarkFilled.png" width={20} alt="" /></button>
+              <button className="btn w-auto hover:bg-red-100 bg-neutral-100 text-black border-none">Watch Now<img src={playButton} width={16} alt="" /></button>
+              <button className="btn w-auto hover:bg-red-100 bg-neutral-100 text-black border-none">Watch Later <img src={BookmarkFilled} width={20} alt="" /></button>
             </div>
           </div>
 

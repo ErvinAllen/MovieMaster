@@ -2,6 +2,14 @@ import NavBar from "../components/NavBar"
 import { motion } from "motion/react"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
+import trending from '../assets/trending.svg'
+import topRated from '../assets/topRated.svg'
+import bookmark from '../assets/bookmark.svg'
+import collections from '../assets/collections.svg'
+import commingSoon from '../assets/comingSoon.svg'
+import bookmarkWhite from '../assets/bookmarkWhite.png'
+import imdb from '../assets/imdb.png'
+import arrow from '../assets/arrow.png'
 
 const imageBaseUrl = 'https://image.tmdb.org/t/p/w500';
 
@@ -157,31 +165,31 @@ function DiscoverMore() {
         className="bg-neutral-950 h-screen mt-24 fixed z-10 flex flex-col gap-y-6 justify-start p-5 rounded-r-lg">
           {navBarIcon}
           <button className="bg-zinc-900 hover:bg-black hover:scale-110 active:scale-90 transition-transform duration-200 rounded-lg flex gap-4 items-center h-12 px-4 text-nowrap ">
-            <img src="src/assets/trending.svg" alt="" />
+            <img src={trending} alt="" />
             <motion.span className={isSideBarOpen ? '' : 'hidden'}  animate={isSideBarOpen ? { opacity: 1 } : { opacity: 0, }} transition={{ duration: 0.1 }}>
               Trending Now
             </motion.span>
           </button>
           <button className="bg-zinc-900 hover:bg-black hover:scale-110 active:scale-90 transition-transform duration-200 rounded-lg flex gap-4 items-center h-12 px-4 text-nowrap">
-            <img src="src/assets/topRated.svg" alt="" />
+            <img src={topRated} alt="" />
             <motion.span className={isSideBarOpen ? '' : 'hidden'}  animate={isSideBarOpen ? { opacity: 1 } : { opacity: 0, }} transition={{ duration: 0.1 }}>
               Top Rated Now
             </motion.span>
           </button>
           <button className="bg-zinc-900 hover:bg-black hover:scale-110 active:scale-90 transition-transform duration-200 rounded-lg flex gap-4 items-center h-12 px-4 text-nowrap">
-            <img src="src/assets/bookmark.svg" alt="" />
+            <img src={bookmark} alt="" />
             <motion.span className={isSideBarOpen ? '' : 'hidden'}  animate={isSideBarOpen ? { opacity: 1 } : { opacity: 0, }} transition={{ duration: 0.1 }}>
               Watchlist
             </motion.span>
           </button>
           <button className="bg-zinc-900 hover:bg-black hover:scale-110 active:scale-90 transition-transform duration-200 rounded-lg flex gap-4 items-center h-12 px-4 text-nowrap">
-            <img src="src/assets/collections.svg" alt="" />
+            <img src={collections} alt="" />
             <motion.span className={isSideBarOpen ? '' : 'hidden'}  animate={isSideBarOpen ? { opacity: 1 } : { opacity: 0, }} transition={{ duration: 0.1 }}>
               Collections
             </motion.span>
           </button>
           <button className="bg-zinc-900 hover:bg-black hover:scale-110 active:scale-90 transition-transform duration-200 rounded-lg flex gap-4 items-center h-12 px-4 text-nowrap">
-            <img src="src/assets/comingSoon.svg" alt="" />
+            <img src={commingSoon} alt="" />
             <motion.span className={isSideBarOpen ? '' : 'hidden'}  animate={isSideBarOpen ? { opacity: 1 } : { opacity: 0, }} transition={{ duration: 0.1 }}>
               Coming Soon
             </motion.span>
@@ -243,7 +251,7 @@ function DiscoverMore() {
                 <div className="flex flex-col gap-2 justify-between px-4 ">
                   <div className="flex flex-row items-center justify-between pt-4">
                     <h1 className="text-2xl font-semibold text-white">{movie.title}</h1>
-                    <img src="src/assets/bookmarkWhite.png" className="cursor-pointer" width={24} alt="" />
+                    <img src={bookmarkWhite} className="cursor-pointer" width={24} alt="" />
                   </div>
                   <ul className="flex flex-col gap-x-4">
                     <h1 className="font-semibold text-lg">{movie.release_date?.slice(0,4)}</h1>
@@ -254,10 +262,10 @@ function DiscoverMore() {
                     </div>
                   </ul>
                 </div>
-                <p className="px-4 pb-2 font-bold flex flex-row items-center gap-2"><img src="src/assets/imdb.png" width={32} alt="" />{movie.vote_average?.toFixed(1)}/10<span className="text-sm font-normal">{movie.vote_count} Votes</span></p>
+                <p className="px-4 pb-2 font-bold flex flex-row items-center gap-2"><img src={imdb} width={32} alt="" />{movie.vote_average?.toFixed(1)}/10<span className="text-sm font-normal">{movie.vote_count} Votes</span></p>
                 <p className="px-4">{movie.overview?.slice(0, 128).concat('...')}</p>
                 <div className="flex flex-row p-4 gap-4">
-                  <Link to={`/discover/${movie.id}`} className="btn w-auto hover:bg-red-600 bg-red-500 text-black">Details <img src="src/assets/arrow.png" width={16} alt="" /></Link>
+                  <Link to={`/discover/${movie.id}`} className="btn w-auto hover:bg-red-600 bg-red-500 text-black">Details <img src={arrow} width={16} alt="" /></Link>
                 </div>
               </div>
             )) : isLoading ? <span className="loading loading-dots loading-lg justify-self-center col-span-full"></span> : (

@@ -2,6 +2,7 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Link } from "react-router-dom";
+import logo from '../assets/logo.png'
 
 function Home() {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
@@ -56,7 +57,7 @@ function Home() {
         
         <nav className="z-20 w-full h-auto fixed bg-gradient-to-b from-stone-950 bg-opacity-70 top-0">
           <ul className="flex md:flex-row h-24  text-nowrap items-center p-8 justify-between text-white text-lg">
-            <a href="/"><img src="src/assets/logo.png" width={64} height={64} /></a>
+            <a href="/"><img src={logo} width={64} height={64} /></a>
             {navBarIcon}
             <ul className="md:flex hidden md:flex-row gap-4 px-4">
               <a href="/" className="hover:scale-110 hover:text-red-400 transition-all ease-in-out">About Us</a>

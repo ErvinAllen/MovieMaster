@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom"
 import logo from '../assets/logo.png';
+import profile from '../assets/profile.svg'
+import notification from '../assets/notification.svg'
+import language from '../assets/language.svg'
+import setting from '../assets/setting.svg'
+import logOut from '../assets/logOut.svg'
 
 function NavBar() {
   return (
@@ -27,11 +32,11 @@ function NavBar() {
           <ul
             tabIndex={0}
             className="menu dropdown-content bg-neutral-900 rounded-box z-[1] mt-4 w-52 p-2 shadow">
-            <li><a><img src="/src/assets/profile.svg" width={16} alt="" />Profile</a></li>
-            <li><a><img src="/src/assets/notification.svg" width={16} alt="" />Notifications</a></li>
-            <li><a><img src="/src/assets/language.svg" width={16} alt="" />Language Preferences</a></li>
-            <li><a><img src="/src/assets/setting.svg" width={16} alt="" />Settings</a></li>
-            <li><Link to={'/'}><img src="/src/assets/logOut.svg" width={16} alt="" />Log Out</Link></li>
+            <li><a><img src={profile} width={16} alt="" />Profile</a></li>
+            <li><a><img src={notification} width={16} alt="" />Notifications</a></li>
+            <li><a><img src={language} width={16} alt="" />Language Preferences</a></li>
+            <li><a><img src={setting} width={16} alt="" />Settings</a></li>
+            <li><Link to={'/'}><img src={logOut} width={16} alt="" />Log Out</Link></li>
           </ul>
         </div>
       </ul>
